@@ -8,12 +8,16 @@ const Header = (): JSX.Element => {
   //this usestate is fro burger menu
   const [menu, setMenu] = useState<boolean>(false);
 
+  const handleLogoClick = () => {
+    window.location.reload(); // reloads the page
+  };
+
   return (
     <HeaderContainer menu={menu}>
       <div className="opacity"></div>
       <div className="container">
         <BurgerMenu setMenu={setMenu} menu={menu} />
-        <img src={logoImg} alt="Ecomerce logo" />
+        <img src={logoImg} onClick={handleLogoClick} alt="Ecomerce logo" />
       </div>
 
       <div className="userContainer">

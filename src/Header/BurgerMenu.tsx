@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import burger from "../assets/icon-menu.svg";
 import closeImg from "../assets/icon-close.svg";
-import { useState } from "react";
 
 interface burgerProps {
   menu: boolean;

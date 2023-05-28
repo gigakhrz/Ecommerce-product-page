@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import logoImg from "../assets/logo.svg";
 import avatar from "../assets/image-avatar.png";
+import BurgerMenu from "./BurgerMenu";
+import { useState } from "react";
 
 const Header = (): JSX.Element => {
+  //this usestate is fro burger menu
+  const [menu, setMenu] = useState<boolean>(false);
+
   return (
-    <HeaderContainer>
+    <HeaderContainer menu={menu}>
+      <div className="opacity"></div>
       <div className="container">
+        <BurgerMenu setMenu={setMenu} menu={menu} />
         <img src={logoImg} alt="Ecomerce logo" />
       </div>
 
@@ -25,12 +32,24 @@ const Header = (): JSX.Element => {
 
 export default Header;
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.div<{ menu: boolean }>`
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 19px 24px 0;
+
+  .opacity {
+    min-width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    display: ${(props) => (props.menu ? "block" : "none")};
+    background: hsla(0, 0%, 0%, 0.75);
+    z-index: 2;
+    top: 0;
+    left: 0;
+  }
 
   .container {
     display: flex;

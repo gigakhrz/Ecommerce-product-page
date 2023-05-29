@@ -6,12 +6,22 @@ import { useState } from "react";
 
 function App() {
   const [count, setCount] = useState<number>(0);
+  const [addedProducts, setAddedProducts] = useState<number>(0);
+
   return (
     <>
       <GlobalStyles />
       <Container>
-        <Header />
-        <MainComponent count={count} setCount={setCount} />
+        <Header
+          setAddedProducts={setAddedProducts}
+          addedProducts={addedProducts}
+        />
+        <MainComponent
+          count={count}
+          setCount={setCount}
+          setAddedProducts={setAddedProducts}
+          addedProducts={addedProducts}
+        />
       </Container>
     </>
   );

@@ -4,27 +4,44 @@ import deleteIcon from "../../../assets/icon-delete.svg";
 
 interface CartProps {
   cartDiv: boolean;
+  addedProducts: number;
+  setAddedProducts: (addedProducts: number) => void;
 }
 
-const Cart = ({ cartDiv }: CartProps): JSX.Element => {
+const Cart = ({
+  cartDiv,
+  addedProducts,
+  setAddedProducts,
+}: CartProps): JSX.Element => {
   return (
     <CartContaiener cartDiv={cartDiv}>
       <h3>Cart</h3>
 
       <hr />
       <ListOfProducts>
-        <div className="product">
-          <img src={productImg} alt="product photo" />
+        {addedProducts === 0 ? (
+          <p className="empty">Your cart is empty.</p>
+        ) : (
+          <div className="product">
+            <img src={productImg} alt="product photo" />
 
-          <div className="titleAndPrice">
-            <p>Fall Limited Edition Sneakers</p>
-            <span>
-              $125.00 x 3 <h5>$375.00</h5>
-            </span>
+            <div className="titleAndPrice">
+              <p>Fall Limited Edition Sneakers</p>
+              <span>
+                $125.00 x 3 <h5>$375.00</h5>
+              </span>
+            </div>
+
+            <img
+              onClick={() => {
+                setAddedProducts(0);
+              }}
+              className="delete"
+              src={deleteIcon}
+              alt="delete icon"
+            />
           </div>
-
-          <img className="delete" src={deleteIcon} alt="delete icon" />
-        </div>
+        )}
       </ListOfProducts>
     </CartContaiener>
   );
@@ -72,6 +89,15 @@ const ListOfProducts = styled.div`
   width: 100%;
   height: 164px;
   padding: 0 24px 32px;
+
+  .empty {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    color: hsla(220, 9%, 45%, 1);
+    text-align: center;
+    margin-top: 43px;
+  }
 
   .product {
     display: flex;

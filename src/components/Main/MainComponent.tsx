@@ -6,15 +6,27 @@ import Buy from "./MainChilds/ByProducts";
 export interface MaincCompProps {
   count: number;
   setCount: (count: number) => void;
+  addedProducts: number;
+  setAddedProducts: (addedProducts: number) => void;
 }
 
-const MainComponent = ({ count, setCount }: MaincCompProps): JSX.Element => {
+const MainComponent = ({
+  count,
+  setCount,
+  setAddedProducts,
+  addedProducts,
+}: MaincCompProps): JSX.Element => {
   return (
     <MainCont>
       <Slider />
       <div className="container">
         <Description />
-        <Buy count={count} setCount={setCount} />
+        <Buy
+          count={count}
+          setCount={setCount}
+          setAddedProducts={setAddedProducts}
+          addedProducts={addedProducts}
+        />
       </div>
     </MainCont>
   );

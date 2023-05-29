@@ -5,7 +5,15 @@ import BurgerMenu from "./HeaderChilds/BurgerMenu";
 import { useState } from "react";
 import Cart from "./HeaderChilds/Cart";
 
-const Header = (): JSX.Element => {
+export interface headerProps {
+  addedProducts: number;
+  setAddedProducts: (addedProducts: number) => void;
+}
+
+const Header = ({
+  addedProducts,
+  setAddedProducts,
+}: headerProps): JSX.Element => {
   //this usestate is fro burger menu
   const [menu, setMenu] = useState<boolean>(false);
   const [cartDiv, setCartDiv] = useState<boolean>(false);
@@ -26,7 +34,11 @@ const Header = (): JSX.Element => {
         <img src={logoImg} onClick={handleLogoClick} alt="Ecomerce logo" />
       </div>
 
-      <Cart cartDiv={cartDiv} />
+      <Cart
+        cartDiv={cartDiv}
+        setAddedProducts={setAddedProducts}
+        addedProducts={addedProducts}
+      />
 
       <div className="userContainer">
         <svg

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
-import Header from "./Header/Header";
+import Header from "./components/Header/Header";
+import Slyder from "./components/Main/Slider";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <GlobalStyles />
       <Container>
         <Header />
+        <Slyder />
       </Container>
     </>
   );

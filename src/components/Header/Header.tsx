@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import logoImg from "../assets/logo.svg";
-import avatar from "../assets/image-avatar.png";
+import logoImg from "../../assets/logo.svg";
+import avatar from "../../assets/image-avatar.png";
 import BurgerMenu from "./BurgerMenu";
 import { useState } from "react";
 

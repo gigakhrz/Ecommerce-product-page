@@ -13,6 +13,7 @@ const Cart = ({
   addedProducts,
   setAddedProducts,
 }: CartProps): JSX.Element => {
+  const totalPrice = addedProducts * 125;
   return (
     <CartContaiener cartDiv={cartDiv}>
       <h3>Cart</h3>
@@ -28,7 +29,7 @@ const Cart = ({
             <div className="titleAndPrice">
               <p>Fall Limited Edition Sneakers</p>
               <span>
-                $125.00 x 3 <h5>$375.00</h5>
+                $125.00 x {addedProducts} <h5>${totalPrice.toFixed(2)}</h5>
               </span>
             </div>
 
@@ -145,6 +146,7 @@ const ListOfProducts = styled.div`
     .delete {
       width: 14px;
       height: 16px;
+      cursor: pointer;
     }
   }
 `;

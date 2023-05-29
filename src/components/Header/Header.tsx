@@ -27,7 +27,7 @@ const Header = ({
   };
 
   return (
-    <HeaderContainer menu={menu}>
+    <HeaderContainer menu={menu} addedProducts={addedProducts}>
       <div className="opacity"></div>
       <div className="container">
         <BurgerMenu setMenu={setMenu} menu={menu} />
@@ -54,7 +54,7 @@ const Header = ({
             fillRule="nonzero"
           />
         </svg>
-
+        <div className="productCount">{addedProducts}</div>
         <img className="avatar" src={avatar} alt="avatar img" />
       </div>
     </HeaderContainer>
@@ -63,7 +63,7 @@ const Header = ({
 
 export default Header;
 
-const HeaderContainer = styled.div<{ menu: boolean }>`
+const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -86,6 +86,28 @@ const HeaderContainer = styled.div<{ menu: boolean }>`
     display: flex;
     align-items: center;
     gap: 16px;
+  }
+
+  .cartSvg {
+    position: relative;
+  }
+  .productCount {
+    display: ${(props) => (props.addedProducts === 0 ? "none" : "flex")};
+    width: 19px;
+    height: 13px;
+    position: absolute;
+    background: #ff7e1b;
+    border-radius: 6.5px;
+    top: 15px;
+    right: 65px;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 12px;
+    color: white;
   }
 
   .userContainer {

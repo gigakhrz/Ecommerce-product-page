@@ -23,8 +23,6 @@ const Slider = (): JSX.Element => {
     setPhoto(photoArray[previousIndex]);
   };
 
-  console.log(photo);
-
   return (
     <SlyderContainer>
       <img className="product" src={photo} alt="" />

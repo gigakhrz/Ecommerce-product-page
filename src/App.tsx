@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header/Header";
-import Slyder from "./components/Main/Slider";
+import MainComponent from "./components/Main/MainComponent";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <GlobalStyles />
       <Container>
         <Header />
-        <Slyder />
+        <MainComponent />
       </Container>
     </>
   );

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
-import nextIcon from "../../assets/icon-next.svg";
-import previousIcon from "../../assets/icon-previous.svg";
-import product1 from "../../assets/image-product-1.jpg";
-import product2 from "../../assets/image-product-2.jpg";
-import product3 from "../../assets/image-product-3.jpg";
-import product4 from "../../assets/image-product-4.jpg";
+import nextIcon from "../../../assets/icon-next.svg";
+import previousIcon from "../../../assets/icon-previous.svg";
+import product1 from "../../../assets/image-product-1.jpg";
+import product2 from "../../../assets/image-product-2.jpg";
+import product3 from "../../../assets/image-product-3.jpg";
+import product4 from "../../../assets/image-product-4.jpg";
 
-const Slyder = (): JSX.Element => {
+const Slider = (): JSX.Element => {
   const photoArray = [product1, product2, product3, product4];
   const [photo, setPhoto] = useState<string>(photoArray[0]);
   const nextPhoto = () => {
@@ -44,7 +44,7 @@ const Slyder = (): JSX.Element => {
   );
 };
 
-export default Slyder;
+export default Slider;
 
 const SlyderContainer = styled.div`
   width: 100%;

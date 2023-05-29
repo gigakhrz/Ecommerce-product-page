@@ -2,14 +2,16 @@ import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header/Header";
 import MainComponent from "./components/Main/MainComponent";
+import { useState } from "react";
 
 function App() {
+  const [count, setCount] = useState<number>(0);
   return (
     <>
       <GlobalStyles />
       <Container>
         <Header />
-        <MainComponent />
+        <MainComponent count={count} setCount={setCount} />
       </Container>
     </>
   );

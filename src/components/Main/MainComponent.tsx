@@ -3,13 +3,18 @@ import Slider from "./MainChilds/Slider";
 import Description from "./MainChilds/Description";
 import Buy from "./MainChilds/ByProducts";
 
-const MainComponent = (): JSX.Element => {
+export interface MaincCompProps {
+  count: number;
+  setCount: (count: number) => void;
+}
+
+const MainComponent = ({ count, setCount }: MaincCompProps): JSX.Element => {
   return (
     <MainCont>
       <Slider />
       <div className="container">
         <Description />
-        <Buy />
+        <Buy count={count} setCount={setCount} />
       </div>
     </MainCont>
   );

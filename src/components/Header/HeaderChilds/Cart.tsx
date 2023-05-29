@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import productImg from "../../../assets/image-product-1-thumbnail.jpg";
+import deleteIcon from "../../../assets/icon-delete.svg";
 
 interface CartProps {
   cartDiv: boolean;
@@ -10,6 +12,20 @@ const Cart = ({ cartDiv }: CartProps): JSX.Element => {
       <h3>Cart</h3>
 
       <hr />
+      <ListOfProducts>
+        <div className="product">
+          <img src={productImg} alt="product photo" />
+
+          <div className="titleAndPrice">
+            <p>Fall Limited Edition Sneakers</p>
+            <span>
+              $125.00 x 3 <h5>$375.00</h5>
+            </span>
+          </div>
+
+          <img className="delete" src={deleteIcon} alt="delete icon" />
+        </div>
+      </ListOfProducts>
     </CartContaiener>
   );
 };
@@ -31,8 +47,7 @@ const CartContaiener = styled.div<{ cartDiv: boolean }>`
   border-radius: 10px;
   right: 7.5px;
   z-index: 2;
-
-  transform: translateY(${(props) => (props.cartDiv ? "0%" : "-20%")});
+  transform: translateY(${(props) => (props.cartDiv ? "0%" : "-10%")});
   transition: transform 0.5s ease-in-out;
 
   h3 {
@@ -50,5 +65,60 @@ const CartContaiener = styled.div<{ cartDiv: boolean }>`
     border: none;
     height: 1px;
     background-color: hsla(219, 35%, 92%, 1);
+  }
+`;
+
+const ListOfProducts = styled.div`
+  width: 100%;
+  height: 164px;
+  padding: 0 24px 32px;
+
+  .product {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+    }
+
+    .titleAndPrice {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+        color: hsla(220, 9%, 45%, 1);
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        align-self: flex-start;
+        gap: 4px;
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+        color: hsla(220, 9%, 45%, 1);
+
+        h5 {
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 26px;
+          color: hsla(220, 13%, 13%, 1);
+        }
+      }
+    }
+
+    .delete {
+      width: 14px;
+      height: 16px;
+    }
   }
 `;

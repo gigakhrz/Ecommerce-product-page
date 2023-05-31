@@ -49,6 +49,7 @@ const SlyderContainer = styled.div`
   position: relative;
 
   max-width: 550px;
+
   .product {
     aspect-ratio: 2/1;
     width: 100%;

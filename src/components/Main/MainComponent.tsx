@@ -42,6 +42,8 @@ const MainCont = styled.div`
   max-width: 550px;
   @media screen and (min-width: 1024px) {
     flex-direction: row;
+    max-width: 100%;
+    justify-content: space-around;
   }
 
   .container {

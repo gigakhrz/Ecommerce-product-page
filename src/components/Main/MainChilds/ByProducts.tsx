@@ -80,11 +80,16 @@ const Price = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  @media screen and (min-width: 1024px) {
+    flex-direction: column;
+  }
   .salePrice {
     display: flex;
     align-items: center;
     gap: 24px;
+    @media screen and (min-width: 1024px) {
+      align-self: flex-start;
+    }
 
     h2 {
       font-size: 28px;
@@ -115,6 +120,9 @@ const Price = styled.div`
     line-height: 26px;
     color: hsla(220, 14%, 75%, 1);
     position: relative;
+    @media screen and (min-width: 1024px) {
+      align-self: flex-start;
+    }
 
     hr {
       position: absolute;
@@ -133,6 +141,10 @@ const AddToCart = styled.div`
   align-items: center;
   gap: 16px;
   width: 100%;
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+    max-width: 445px;
+  }
 
   .count {
     display: flex;
@@ -140,9 +152,13 @@ const AddToCart = styled.div`
     align-items: center;
     background: #f6f8fd;
     border-radius: 10px;
-    min-width: 100%;
+    width: 100%;
     height: 56px;
     padding: 0 24px;
+    @media screen and (min-width: 1024px) {
+      max-width: 157px;
+      padding: 0 16px;
+    }
 
     h5 {
       font-size: 16px;

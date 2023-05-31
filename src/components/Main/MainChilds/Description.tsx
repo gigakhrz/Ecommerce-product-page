@@ -28,6 +28,7 @@ const DescriptionCont = styled.div`
   @media screen and (min-width: 1024px) {
     max-width: 445px;
     gap: 32px;
+    padding: 0;
   }
 
   .title {

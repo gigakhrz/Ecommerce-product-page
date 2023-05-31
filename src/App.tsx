@@ -42,5 +42,6 @@ const Container = styled.div`
   }
   @media screen and (min-width: 1024px) {
     gap: 90px;
+    margin-bottom: 0;
   }
 `;

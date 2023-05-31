@@ -73,6 +73,9 @@ const BuyContainer = styled.div`
   align-items: center;
   gap: 26px;
   padding: 0 24px;
+  @media screen and (min-width: 1024px) {
+    padding: 0;
+  }
 `;
 
 const Price = styled.div`

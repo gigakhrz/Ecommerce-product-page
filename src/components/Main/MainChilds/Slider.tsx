@@ -65,7 +65,7 @@ export default Slider;
 const SlyderContainer = styled.div`
   width: 100%;
   @media screen and (min-width: 1024px) {
-    max-width: 550px;
+    max-width: 445px;
   }
 
   .productCont {
@@ -116,15 +116,19 @@ const SlyderContainer = styled.div`
 `;
 
 const PhotoContainer = styled.div`
-  width: 550px;
-  display: flex;
+  @media screen and (min-width: 1024px) {
+    max-width: flex;
+  }
+
+  width: 445px;
+  display: none;
   flex-direction: column;
   align-items: center;
   gap: 32px;
 
   .mainPhoto {
-    width: 550px;
-    height: 550px;
+    width: 445px;
+    height: 445px;
     border-radius: 15px;
   }
   .smallPhotos {

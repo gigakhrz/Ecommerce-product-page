@@ -40,6 +40,9 @@ const MainCont = styled.div`
   flex-direction: column;
   gap: 24px;
   max-width: 550px;
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+  }
 
   .container {
     display: flex;

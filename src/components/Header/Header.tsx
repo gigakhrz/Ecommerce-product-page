@@ -75,6 +75,12 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
   padding: 19px 24px 0;
   max-width: 550px;
   position: relative;
+  @media screen and (min-width: 1024px) {
+    max-width: 100%;
+    justify-content: space-around;
+    margin-top: 28px;
+    padding: 0;
+  }
 
   .opacity {
     min-width: 100%;

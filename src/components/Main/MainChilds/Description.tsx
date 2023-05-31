@@ -28,9 +28,10 @@ const DescriptionCont = styled.div`
 
   .title {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     gap: 19px;
+    width: 100%;
 
     h4 {
       font-size: 12px;

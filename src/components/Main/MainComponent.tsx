@@ -39,6 +39,7 @@ const MainCont = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 24px;
+  max-width: 550px;
 
   .container {
     display: flex;

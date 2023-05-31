@@ -132,6 +132,7 @@ const AddToCart = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  width: 100%;
 
   .count {
     display: flex;
@@ -139,7 +140,7 @@ const AddToCart = styled.div`
     align-items: center;
     background: #f6f8fd;
     border-radius: 10px;
-    width: 327px;
+    min-width: 100%;
     height: 56px;
     padding: 0 24px;
 
@@ -167,7 +168,7 @@ const AddToCart = styled.div`
     background: #ff7e1b;
     box-shadow: 0px 20px 50px -20px #ff7e1b;
     border-radius: 10px;
-    width: 327px;
+    width: 100%;
     height: 56px;
     gap: 15.5px;
 

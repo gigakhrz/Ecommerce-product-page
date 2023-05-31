@@ -47,13 +47,21 @@ export default Slider;
 const SlyderContainer = styled.div`
   width: 100%;
   position: relative;
+
+  max-width: 550px;
   .product {
-    width: 100%;
-    height: 300px;
     aspect-ratio: 2/1;
+    width: 100%;
+    min-height: 300px;
     object-fit: cover;
     transform: translateX();
     transition: transform 0.4s ease 0s;
+    @media screen and (min-width: 400px) {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
   }
 
   .arrow {

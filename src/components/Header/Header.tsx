@@ -38,6 +38,7 @@ const Header = ({
         cartDiv={cartDiv}
         setAddedProducts={setAddedProducts}
         addedProducts={addedProducts}
+        setCartDiv={setCartDiv}
       />
 
       <div className="userContainer">
@@ -70,6 +71,7 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
   justify-content: space-between;
   align-items: center;
   padding: 19px 24px 0;
+  max-width: 550px;
 
   .opacity {
     min-width: 100%;

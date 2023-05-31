@@ -4,6 +4,7 @@ import deleteIcon from "../../../assets/icon-delete.svg";
 
 interface CartProps {
   cartDiv: boolean;
+  setCartDiv: (cartDiv: boolean) => void;
   addedProducts: number;
   setAddedProducts: (addedProducts: number) => void;
 }
@@ -12,6 +13,7 @@ const Cart = ({
   cartDiv,
   addedProducts,
   setAddedProducts,
+  setCartDiv,
 }: CartProps): JSX.Element => {
   const totalPrice = addedProducts * 125;
   return (
@@ -36,6 +38,7 @@ const Cart = ({
             <img
               onClick={() => {
                 setAddedProducts(0);
+                setCartDiv(false);
               }}
               className="delete"
               src={deleteIcon}

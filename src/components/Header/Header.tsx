@@ -4,6 +4,7 @@ import avatar from "../../assets/image-avatar.png";
 import BurgerMenu from "./HeaderChilds/BurgerMenu";
 import { useState } from "react";
 import Cart from "./HeaderChilds/Cart";
+import NavBar from "./HeaderChilds/NavBar";
 
 export interface headerProps {
   addedProducts: number;
@@ -32,6 +33,7 @@ const Header = ({
       <div className="container">
         <BurgerMenu setMenu={setMenu} menu={menu} />
         <img src={logoImg} onClick={handleLogoClick} alt="Ecomerce logo" />
+        <NavBar />
       </div>
 
       <Cart
@@ -72,6 +74,7 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
   align-items: center;
   padding: 19px 24px 0;
   max-width: 550px;
+  position: relative;
 
   .opacity {
     min-width: 100%;

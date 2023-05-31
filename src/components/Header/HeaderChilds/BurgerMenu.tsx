@@ -45,6 +45,9 @@ const BurgerCont = styled.div<{ menu: boolean }>`
     display: flex;
     align-items: center;
   }
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
 `;
 
 const Menu = styled.nav<{ menu: boolean }>`

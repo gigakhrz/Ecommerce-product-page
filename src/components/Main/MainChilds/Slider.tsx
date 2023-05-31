@@ -117,7 +117,7 @@ const SlyderContainer = styled.div`
 
 const PhotoContainer = styled.div`
   @media screen and (min-width: 1024px) {
-    max-width: flex;
+    display: flex;
   }
 
   width: 445px;

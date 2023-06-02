@@ -75,15 +75,22 @@ const Container = styled.div`
   width: 100%;
   gap: 45px;
 
+  @media screen and (min-width: 1024px) {
+    max-width: 1110px;
+  }
+
   hr {
     display: none;
     border: none;
     height: 1px;
-    width: 77%;
     background-color: hsla(219, 35%, 92%, 1);
     align-self: center;
     @media screen and (min-width: 1024px) {
       display: block;
+      width: 77%;
+    }
+    @media screen and (min-width: 1110px) {
+      width: 100%;
     }
   }
 `;
@@ -102,6 +109,9 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
     justify-content: space-around;
     margin-top: 28px;
     padding: 0;
+  }
+  @media screen and (min-width: 1110px) {
+    justify-content: space-between;
   }
 
   .opacity {

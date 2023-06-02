@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import nextIcon from "../../../assets/icon-next.svg";
 import previousIcon from "../../../assets/icon-previous.svg";
@@ -22,9 +22,10 @@ let nextIndex: number;
 const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
   const photoArray = [product1, product2, product3, product4];
   const smallPhotos = [mini1, mini2, mini3, mini4];
-  const [photo, setPhoto] = useState<string>(photoArray[0]);
+  const [photo, setPhoto] = useState<string>(photoArray[1]);
 
-  const [lastPhoto, setLastPhoto] = useState<string>(product1);
+  // for picked photo border and oapcity
+  const [pick, setPick] = useState<string>(product1);
 
   const nextPhoto = () => {
     const currentIndex = photoArray.indexOf(photo);
@@ -41,11 +42,30 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
 
   // on the desktop When customer click on one of the list of images below, display it as a large image
   const handleImgClick = (xImg: string): void => {
+    setSneakersPhoto(xImg);
+  };
+
+  // for desktop slider
+  const [sneakersPhoto, setSneakersPhoto] = useState<string>(product1);
+  const [sneakersPick, setSneakersPick] = useState<string>(product1);
+
+  const handleImgClick2 = (xImg: string): void => {
     setPhoto(xImg);
   };
 
+  //useEfect when change on state this will change second state
+  useEffect(() => {
+    setPhoto(sneakersPhoto);
+  }, [sneakersPhoto]);
+  console.log(photo);
+  //
+  //
   return (
-    <SlyderContainer openImg={openImg}>
+    <SlyderContainer
+      openImg={openImg}
+      sneakersPick={sneakersPick}
+      photo={photo}
+    >
       {/* this productCont only appear on mobile,tablet, and on desktop when user clicked product photo to enlarge it */}
       <div className="desktopContainer">
         <svg
@@ -66,37 +86,41 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
           />
         </svg>
 
-        <div className="productCont">
+        <div className="productCont" onClick={nextPhoto}>
           <img className="product" src={photo} alt="" />
 
           <div className="arrow left">
-            <img
-              className="prev"
-              src={previousIcon}
-              alt="previous icon"
-              onClick={nextPhoto}
-            />
+            <img className="prev" src={previousIcon} alt="previous icon" />
           </div>
-          <div className="arrow right">
-            <img
-              className="next"
-              src={nextIcon}
-              alt=""
-              onClick={previousPhoto}
-            />
+          <div className="arrow right" onClick={previousPhoto}>
+            <img className="next" src={nextIcon} alt="" />
           </div>
         </div>
 
         <div className="smallPhotos2">
           {smallPhotos.map((smallPhoto, index) => (
-            <img src={smallPhoto} alt="produt photo" key={index} />
+            <div
+              className="thumb"
+              key={index}
+              onClick={() => {
+                setSneakersPick(photoArray[index]);
+                handleImgClick2(photoArray[index]);
+              }}
+            >
+              <img
+                src={smallPhoto}
+                className={photoArray[index] === photo ? "select" : ""}
+                alt="produt photo"
+              />
+              <div className="hover"></div>
+            </div>
           ))}
         </div>
       </div>
-      <PhotoContainer>
+      <PhotoContainer pick={pick} sneakersPhoto={sneakersPhoto}>
         <img
           className="mainPhoto"
-          src={openImg ? lastPhoto : photo}
+          src={sneakersPhoto}
           alt=""
           onClick={() => {
             setOpenImg(true);
@@ -108,9 +132,10 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
               key={index}
               src={smallPhoto}
               alt="product photo"
+              className={photoArray[index] === sneakersPhoto ? "selected" : ""}
               onClick={() => {
                 handleImgClick(photoArray[index]);
-                setLastPhoto(photoArray[index]);
+                setPick(photoArray[index]);
               }}
             />
           ))}
@@ -122,7 +147,11 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
 
 export default Slider;
 
-const SlyderContainer = styled.div<{ openImg: boolean }>`
+const SlyderContainer = styled.div<{
+  openImg: boolean;
+  sneakersPick: string;
+  photo: string;
+}>`
   width: 100%;
   @media screen and (min-width: 1024px) {
     max-width: 445px;
@@ -163,10 +192,46 @@ const SlyderContainer = styled.div<{ openImg: boolean }>`
       justify-content: center;
       margin-top: 16px;
 
+      .thumb {
+        position: relative;
+        cursor: pointer;
+        width: 88px;
+        height: 88px;
+        border-radius: 10px;
+      }
+
+      .thumb:hover .hover {
+        display: block;
+      }
+
+      .hover {
+        border-radius: 10px;
+        display: none;
+        position: absolute;
+        width: 88px;
+        height: 88px;
+        top: 0;
+        right: 0;
+        left: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 0.5)
+        );
+      }
+
       img {
         width: 88px;
         height: 88px;
         border-radius: 10px;
+        z-index: 10;
+
+        .select {
+          opacity: ${(props) =>
+            props.sneakersPick === props.photo ? " 0.25 " : ""};
+          border: ${(props) =>
+            props.sneakersPick === props.photo ? "4px solid red " : ""};
+        }
       }
     }
   }
@@ -219,7 +284,7 @@ const SlyderContainer = styled.div<{ openImg: boolean }>`
   }
 `;
 
-const PhotoContainer = styled.div`
+const PhotoContainer = styled.div<{ pick: string; sneakersPhoto: string }>`
   @media screen and (min-width: 1024px) {
     display: flex;
   }
@@ -234,6 +299,7 @@ const PhotoContainer = styled.div`
     width: 445px;
     height: 445px;
     border-radius: 15px;
+    cursor: pointer;
   }
   .smallPhotos {
     display: flex;
@@ -244,6 +310,18 @@ const PhotoContainer = styled.div`
       width: 88px;
       height: 88px;
       border-radius: 10px;
+      cursor: pointer;
+    }
+
+    img.selected {
+      opacity: ${(props) =>
+        props.pick === props.sneakersPhoto ? " 0.25 " : ""};
+      border: ${(props) =>
+        props.pick === props.sneakersPhoto ? "4px solid red " : ""};
+    }
+
+    img:hover {
+      opacity: 0.5;
     }
   }
 `;

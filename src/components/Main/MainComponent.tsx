@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Slider from "./MainChilds/Slider";
 import Description from "./MainChilds/Description";
 import Buy from "./MainChilds/ByProducts";
-import Overlay from "./MainChilds/Overlay";
 
 interface MaincCompProps {
   count: number;
@@ -24,7 +23,7 @@ const MainComponent = ({
   return (
     <MainCont>
       <Slider openImg={openImg} setOpenImg={setOpenImg} />
-      <Overlay />
+
       <div className="container">
         <Description />
         <Buy

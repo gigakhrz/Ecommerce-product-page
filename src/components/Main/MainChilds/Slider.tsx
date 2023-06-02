@@ -13,9 +13,17 @@ import mini2 from "../../../assets/image-product-2-thumbnail.jpg";
 import mini3 from "../../../assets/image-product-3-thumbnail.jpg";
 import mini4 from "../../../assets/image-product-3-thumbnail.jpg";
 
-const Slider = (): JSX.Element => {
+import xIcon from "../../../assets/icon-close.svg";
+
+interface SliderProps {
+  openImg: boolean;
+  setOpenImg: (openImg: boolean) => void;
+}
+
+const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
   const photoArray = [product1, product2, product3, product4];
   const [photo, setPhoto] = useState<string>(photoArray[0]);
+
   const nextPhoto = () => {
     const currentIndex = photoArray.indexOf(photo);
     const nextIndex = (currentIndex + 1) % photoArray.length;
@@ -29,31 +37,74 @@ const Slider = (): JSX.Element => {
     setPhoto(photoArray[previousIndex]);
   };
 
-  return (
-    <SlyderContainer>
-      {/* this productCont only appear on mobile,tablet, and on desktop when user clicked product photo to enlarge it */}
-      <div className="productCont">
-        <img className="product" src={photo} alt="" />
+  // on the desktop When customer click on one of the list of images below, display it as a large image
+  const handleImgClick = (xImg: string): void => {
+    setPhoto(xImg);
+  };
 
-        <div className="arrow left">
-          <img
-            className="prev"
-            src={previousIcon}
-            alt="previous icon"
-            onClick={nextPhoto}
-          />
+  return (
+    <SlyderContainer openImg={openImg}>
+      {/* this productCont only appear on mobile,tablet, and on desktop when user clicked product photo to enlarge it */}
+      <div className="desktopContainer">
+        <img className="close" src={xIcon} alt=" close icon" />
+        <div className="productCont">
+          <img className="product" src={photo} alt="" />
+
+          <div className="arrow left">
+            <img
+              className="prev"
+              src={previousIcon}
+              alt="previous icon"
+              onClick={nextPhoto}
+            />
+          </div>
+          <div className="arrow right">
+            <img
+              className="next"
+              src={nextIcon}
+              alt=""
+              onClick={previousPhoto}
+            />
+          </div>
         </div>
-        <div className="arrow right">
-          <img className="next" src={nextIcon} alt="" onClick={previousPhoto} />
-        </div>
-      </div>
-      <PhotoContainer>
-        <img className="mainPhoto" src="" alt="" />
-        <div className="smallPhotos">
+
+        <div className="smallPhotos2">
           <img src={mini1} alt="product photo" />
           <img src={mini2} alt="product photo" />
           <img src={mini3} alt="product photo" />
           <img src={mini4} alt="product photo" />
+        </div>
+      </div>
+      <PhotoContainer>
+        <img
+          className="mainPhoto"
+          src={photo}
+          alt=""
+          onClick={() => {
+            setOpenImg(true);
+          }}
+        />
+        <div className="smallPhotos">
+          <img
+            src={mini1}
+            alt="product photo"
+            onClick={() => handleImgClick(product1)}
+          />
+          <img
+            src={mini2}
+            alt="product photo"
+            onClick={() => handleImgClick(product2)}
+          />
+          <img
+            src={mini3}
+            alt="product photo"
+            onClick={() => handleImgClick(product3)}
+          />
+          <img
+            src={mini4}
+            alt="product photo"
+            onClick={() => handleImgClick(product4)}
+          />
         </div>
       </PhotoContainer>
     </SlyderContainer>
@@ -62,17 +113,60 @@ const Slider = (): JSX.Element => {
 
 export default Slider;
 
-const SlyderContainer = styled.div`
+const SlyderContainer = styled.div<{ openImg: boolean }>`
   width: 100%;
   @media screen and (min-width: 1024px) {
     max-width: 445px;
   }
 
+  .desktopContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+
+    @media screen and (min-width: 1024px) {
+      display: ${(props) => (props.openImg ? "flex" : "none")};
+      position: absolute;
+      z-index: 5;
+      top: 89px;
+      left: 31%;
+    }
+
+    .close {
+      align-self: flex-end;
+      display: none;
+
+      @media screen and (min-width: 1024px) {
+        display: flex;
+      }
+    }
+
+    .smallPhotos2 {
+      display: none;
+
+      @media screen and (min-width: 1024px) {
+        display: flex;
+      }
+      width: 100%;
+      gap: 31px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+
+      img {
+        width: 88px;
+        height: 88px;
+        border-radius: 10px;
+      }
+    }
+  }
+
   .productCont {
     position: relative;
+
     max-width: 550px;
     @media screen and (min-width: 1024px) {
-      display: none;
     }
 
     .product {
@@ -90,6 +184,7 @@ const SlyderContainer = styled.div`
       }
       @media screen and (min-width: 1024px) {
         max-width: 550px;
+        height: 550px;
       }
     }
 

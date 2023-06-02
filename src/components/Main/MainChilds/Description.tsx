@@ -26,6 +26,7 @@ const DescriptionCont = styled.div`
   gap: 15px;
   padding: 0 24px;
   @media screen and (min-width: 1024px) {
+    min-width: 445px;
     max-width: 445px;
     gap: 32px;
     padding: 0;

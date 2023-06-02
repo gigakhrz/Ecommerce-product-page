@@ -2,14 +2,19 @@ import styled from "styled-components";
 import plusIcon from "../../../assets/icon-plus.svg";
 import minusIcon from "../../../assets/icon-minus.svg";
 
-import { MaincCompProps } from "../MainComponent";
+interface ByProps {
+  count: number;
+  setCount: (count: number) => void;
+  addedProducts: number;
+  setAddedProducts: (addedProducts: number) => void;
+}
 
 const Buy = ({
   count,
   setCount,
   setAddedProducts,
   addedProducts,
-}: MaincCompProps): JSX.Element => {
+}: ByProps): JSX.Element => {
   const minus = (): void => {
     if (count !== 0) {
       setCount(count - 1);

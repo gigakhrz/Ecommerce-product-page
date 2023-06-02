@@ -2,12 +2,15 @@ import styled from "styled-components";
 import Slider from "./MainChilds/Slider";
 import Description from "./MainChilds/Description";
 import Buy from "./MainChilds/ByProducts";
+import Overlay from "./MainChilds/Overlay";
 
-export interface MaincCompProps {
+interface MaincCompProps {
   count: number;
   setCount: (count: number) => void;
   addedProducts: number;
   setAddedProducts: (addedProducts: number) => void;
+  openImg: boolean;
+  setOpenImg: (openImg: boolean) => void;
 }
 
 const MainComponent = ({
@@ -15,10 +18,13 @@ const MainComponent = ({
   setCount,
   setAddedProducts,
   addedProducts,
+  openImg,
+  setOpenImg,
 }: MaincCompProps): JSX.Element => {
   return (
     <MainCont>
-      <Slider />
+      <Slider openImg={openImg} setOpenImg={setOpenImg} />
+      <Overlay />
       <div className="container">
         <Description />
         <Buy

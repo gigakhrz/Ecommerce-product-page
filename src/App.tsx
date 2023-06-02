@@ -7,11 +7,13 @@ import { useState } from "react";
 function App() {
   const [count, setCount] = useState<number>(0);
   const [addedProducts, setAddedProducts] = useState<number>(0);
+  const [openImg, setOpenImg] = useState<boolean>(false);
 
   return (
     <>
       <GlobalStyles />
-      <Container>
+      <Container openImg={openImg}>
+        <div className="overlay"></div>
         <Header
           setAddedProducts={setAddedProducts}
           addedProducts={addedProducts}
@@ -21,6 +23,8 @@ function App() {
           setCount={setCount}
           setAddedProducts={setAddedProducts}
           addedProducts={addedProducts}
+          openImg={openImg}
+          setOpenImg={setOpenImg}
         />
       </Container>
     </>
@@ -29,7 +33,20 @@ function App() {
 
 export default App;
 
-const Container = styled.div`
+const Container = styled.div<{ openImg: boolean }>`
+  .overlay {
+    display: none;
+    @media (min-width: 1024px) {
+      display: ${(props) => (props.openImg ? "block" : "none")};
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.75;
+      z-index: 4;
+    }
+  }
+
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -43,5 +60,6 @@ const Container = styled.div`
   @media screen and (min-width: 1024px) {
     gap: 90px;
     margin-bottom: 0;
+    position: relative;
   }
 `;

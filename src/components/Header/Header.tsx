@@ -120,6 +120,9 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
     display: flex;
     align-items: center;
     gap: 16px;
+    @media screen and (min-width: 1024px) {
+      gap: 56.5px;
+    }
   }
 
   .cartSvg {

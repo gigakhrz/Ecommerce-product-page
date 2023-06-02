@@ -47,7 +47,6 @@ const Header = ({
         <div className="userContainer">
           <svg
             onClick={handleCartClick}
-            className="cartSvg"
             width="22"
             height="20"
             xmlns="http://www.w3.org/2000/svg"
@@ -125,9 +124,6 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
     }
   }
 
-  .cartSvg {
-    position: relative;
-  }
   .productCount {
     display: ${(props) => (props.addedProducts === 0 ? "none" : "flex")};
     width: 19px;
@@ -135,8 +131,8 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
     position: absolute;
     background: #ff7e1b;
     border-radius: 6.5px;
-    top: 15px;
-    right: 65px;
+    top: -5px;
+    right: 40px;
 
     align-items: center;
     justify-content: center;
@@ -151,6 +147,7 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
     display: flex;
     align-items: center;
     gap: 22.2px;
+    position: relative;
 
     .avatar {
       width: 24px;

@@ -11,20 +11,24 @@ import product4 from "../../../assets/image-product-4.jpg";
 import mini1 from "../../../assets/image-product-1-thumbnail.jpg";
 import mini2 from "../../../assets/image-product-2-thumbnail.jpg";
 import mini3 from "../../../assets/image-product-3-thumbnail.jpg";
-import mini4 from "../../../assets/image-product-3-thumbnail.jpg";
+import mini4 from "../../../assets/image-product-4-thumbnail.jpg";
 
 interface SliderProps {
   openImg: boolean;
   setOpenImg: (openImg: boolean) => void;
 }
 
+let nextIndex: number;
 const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
   const photoArray = [product1, product2, product3, product4];
+  const smallPhotos = [mini1, mini2, mini3, mini4];
   const [photo, setPhoto] = useState<string>(photoArray[0]);
+
+  const [lastPhoto, setLastPhoto] = useState<string>(product1);
 
   const nextPhoto = () => {
     const currentIndex = photoArray.indexOf(photo);
-    const nextIndex = (currentIndex + 1) % photoArray.length;
+    nextIndex = (currentIndex + 1) % photoArray.length;
     setPhoto(photoArray[nextIndex]);
   };
 
@@ -50,6 +54,9 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
           height="20"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
+          onClick={() => {
+            setOpenImg(false);
+          }}
         >
           <path
             d="M2,2 L18,18 M18,2 L2,18"
@@ -81,42 +88,32 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
         </div>
 
         <div className="smallPhotos2">
-          <img src={mini1} alt="product photo" />
-          <img src={mini2} alt="product photo" />
-          <img src={mini3} alt="product photo" />
-          <img src={mini4} alt="product photo" />
+          {smallPhotos.map((smallPhoto, index) => (
+            <img src={smallPhoto} alt="produt photo" key={index} />
+          ))}
         </div>
       </div>
       <PhotoContainer>
         <img
           className="mainPhoto"
-          src={photo}
+          src={openImg ? lastPhoto : photo}
           alt=""
           onClick={() => {
             setOpenImg(true);
           }}
         />
         <div className="smallPhotos">
-          <img
-            src={mini1}
-            alt="product photo"
-            onClick={() => handleImgClick(product1)}
-          />
-          <img
-            src={mini2}
-            alt="product photo"
-            onClick={() => handleImgClick(product2)}
-          />
-          <img
-            src={mini3}
-            alt="product photo"
-            onClick={() => handleImgClick(product3)}
-          />
-          <img
-            src={mini4}
-            alt="product photo"
-            onClick={() => handleImgClick(product4)}
-          />
+          {smallPhotos.map((smallPhoto, index) => (
+            <img
+              key={index}
+              src={smallPhoto}
+              alt="product photo"
+              onClick={() => {
+                handleImgClick(photoArray[index]);
+                setLastPhoto(photoArray[index]);
+              }}
+            />
+          ))}
         </div>
       </PhotoContainer>
     </SlyderContainer>

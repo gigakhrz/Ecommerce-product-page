@@ -43,6 +43,7 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
   // on the desktop When customer click on one of the list of images below, display it as a large image
   const handleImgClick = (xImg: string): void => {
     setSneakersPhoto(xImg);
+    setPhoto(xImg);
   };
 
   // for desktop slider
@@ -109,7 +110,7 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
             >
               <img
                 src={smallPhoto}
-                className={photoArray[index] === photo ? "select" : ""}
+                className={photoArray[index] == photo ? "select" : ""}
                 alt="produt photo"
               />
               <div className="hover"></div>
@@ -135,6 +136,7 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
               className={photoArray[index] === sneakersPhoto ? "selected" : ""}
               onClick={() => {
                 handleImgClick(photoArray[index]);
+
                 setPick(photoArray[index]);
               }}
             />
@@ -152,6 +154,12 @@ const SlyderContainer = styled.div<{
   sneakersPick: string;
   photo: string;
 }>`
+  .select {
+    opacity: ${(props) => (props.sneakersPick === props.photo ? " 0.25 " : "")};
+    border: ${(props) =>
+      props.sneakersPick === props.photo ? "4px solid red " : ""};
+  }
+
   width: 100%;
   @media screen and (min-width: 1024px) {
     max-width: 445px;
@@ -225,13 +233,6 @@ const SlyderContainer = styled.div<{
         height: 88px;
         border-radius: 10px;
         z-index: 10;
-
-        .select {
-          opacity: ${(props) =>
-            props.sneakersPick === props.photo ? " 0.25 " : ""};
-          border: ${(props) =>
-            props.sneakersPick === props.photo ? "4px solid red " : ""};
-        }
       }
     }
   }

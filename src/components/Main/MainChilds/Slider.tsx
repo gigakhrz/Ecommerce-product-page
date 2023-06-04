@@ -289,11 +289,18 @@ const SlyderContainer = styled.div<{
     }
 
     .left {
-      left: -25px;
+      left: 16px;
+
+      @media screen and (min-width: 1024px) {
+        left: -25px;
+      }
     }
 
     .right {
-      right: -25px;
+      right: 16px;
+      @media screen and (min-width: 1024px) {
+        right: -25px;
+      }
     }
   }
 `;

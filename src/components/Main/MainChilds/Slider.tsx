@@ -58,6 +58,7 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
   useEffect(() => {
     setPhoto(sneakersPhoto);
   }, [sneakersPhoto]);
+
   console.log(photo);
   //
   //
@@ -97,23 +98,23 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
             <img className="next" src={nextIcon} alt="" />
           </div>
         </div>
-
         <div className="smallPhotos2">
           {smallPhotos.map((smallPhoto, index) => (
             <div
-              className="thumb"
+              className={`thumb ${photoArray[index] === photo ? "select" : ""}`}
               key={index}
               onClick={() => {
                 setSneakersPick(photoArray[index]);
                 handleImgClick2(photoArray[index]);
               }}
             >
-              <img
-                src={smallPhoto}
-                className={photoArray[index] == photo ? "select" : ""}
-                alt="produt photo"
-              />
-              <div className="hover"></div>
+              <img src={smallPhoto} alt="product photo" />
+              <div
+                className="hover"
+                style={{
+                  display: photoArray[index] === photo ? "block" : "",
+                }}
+              ></div>
             </div>
           ))}
         </div>
@@ -136,7 +137,6 @@ const Slider = ({ openImg, setOpenImg }: SliderProps): JSX.Element => {
               className={photoArray[index] === sneakersPhoto ? "selected" : ""}
               onClick={() => {
                 handleImgClick(photoArray[index]);
-
                 setPick(photoArray[index]);
               }}
             />
@@ -154,12 +154,6 @@ const SlyderContainer = styled.div<{
   sneakersPick: string;
   photo: string;
 }>`
-  .select {
-    opacity: ${(props) => (props.sneakersPick === props.photo ? " 0.25 " : "")};
-    border: ${(props) =>
-      props.sneakersPick === props.photo ? "4px solid red " : ""};
-  }
-
   width: 100%;
   @media screen and (min-width: 1024px) {
     max-width: 445px;
@@ -207,9 +201,17 @@ const SlyderContainer = styled.div<{
         height: 88px;
         border-radius: 10px;
       }
+      .select {
+        outline: 2px solid #ff7e1b;
+      }
 
       .thumb:hover .hover {
         display: block;
+        background: linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.5),
+          rgba(255, 255, 255, 0.5)
+        );
       }
 
       .hover {
@@ -223,8 +225,8 @@ const SlyderContainer = styled.div<{
         left: 0;
         background: linear-gradient(
           0deg,
-          rgba(255, 255, 255, 0.5),
-          rgba(255, 255, 255, 0.5)
+          rgba(255, 255, 255, 0.75),
+          rgba(255, 255, 255, 0.75)
         );
       }
 
@@ -318,7 +320,7 @@ const PhotoContainer = styled.div<{ pick: string; sneakersPhoto: string }>`
       opacity: ${(props) =>
         props.pick === props.sneakersPhoto ? " 0.25 " : ""};
       border: ${(props) =>
-        props.pick === props.sneakersPhoto ? "4px solid red " : ""};
+        props.pick === props.sneakersPhoto ? "2px solid #FF4400 " : ""};
     }
 
     img:hover {

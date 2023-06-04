@@ -159,9 +159,28 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
     gap: 22.2px;
     position: relative;
 
+    svg {
+      cursor: pointer;
+    }
+
+    svg:hover path {
+      fill: #1d2026;
+    }
+
     .avatar {
       width: 24px;
       height: 24px;
+
+      @media screen and (min-width: 1024px) {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      :hover {
+        outline: 2px solid #ff7e1b;
+      }
     }
   }
 `;

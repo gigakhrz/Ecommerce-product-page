@@ -52,7 +52,7 @@ const BurgerCont = styled.div<{ menu: boolean }>`
 
 const Menu = styled.nav<{ menu: boolean }>`
   width: 66.7%;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 54px;
@@ -61,7 +61,7 @@ const Menu = styled.nav<{ menu: boolean }>`
   position: ${(props) => (props.menu ? "absolute" : "fixed")};
   left: ${(props) => (props.menu ? "0" : "-300%")};
   top: 0;
-  z-index: 4;
+  z-index: 15;
   transform: translateX(${(props) => (props.menu ? "0%" : "-100%")});
   transition: transform 0.7s ease 0s;
   .close {

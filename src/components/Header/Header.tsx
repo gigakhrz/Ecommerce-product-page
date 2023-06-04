@@ -120,7 +120,7 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
     position: absolute;
     display: ${(props) => (props.menu ? "block" : "none")};
     background: hsla(0, 0%, 0%, 0.75);
-    z-index: 2;
+    z-index: 10;
     top: 0;
     left: 0;
   }

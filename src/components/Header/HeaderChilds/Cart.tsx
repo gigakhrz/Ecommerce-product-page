@@ -25,25 +25,28 @@ const Cart = ({
         {addedProducts === 0 ? (
           <p className="empty">Your cart is empty.</p>
         ) : (
-          <div className="product">
-            <img src={productImg} alt="product photo" />
+          <div className="div">
+            <div className="product">
+              <img src={productImg} alt="product photo" />
 
-            <div className="titleAndPrice">
-              <p>Fall Limited Edition Sneakers</p>
-              <span>
-                $125.00 x {addedProducts} <h5>${totalPrice.toFixed(2)}</h5>
-              </span>
+              <div className="titleAndPrice">
+                <p>Fall Limited Edition Sneakers</p>
+                <span>
+                  $125.00 x {addedProducts} <h5>${totalPrice.toFixed(2)}</h5>
+                </span>
+              </div>
+
+              <img
+                onClick={() => {
+                  setAddedProducts(0);
+                  setCartDiv(false);
+                }}
+                className="delete"
+                src={deleteIcon}
+                alt="delete icon"
+              />
             </div>
-
-            <img
-              onClick={() => {
-                setAddedProducts(0);
-                setCartDiv(false);
-              }}
-              className="delete"
-              src={deleteIcon}
-              alt="delete icon"
-            />
+            <button>Checkout</button>
           </div>
         )}
       </ListOfProducts>
@@ -101,6 +104,35 @@ const ListOfProducts = styled.div`
     color: hsla(220, 9%, 45%, 1);
     text-align: center;
     margin-top: 43px;
+  }
+
+  .div {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 26px;
+
+    button {
+      width: 100%;
+      height: 56px;
+      border: none;
+      background-color: hsla(26, 100%, 55%, 1);
+      cursor: pointer;
+      text-align: center;
+
+      color: white;
+      font-family: Kumbh Sans;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      border-radius: 10px;
+
+      @media screen and (min-width: 1024px) {
+        :hover {
+          background: #ffab6a;
+        }
+      }
+    }
   }
 
   .product {

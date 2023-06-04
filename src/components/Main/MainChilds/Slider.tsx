@@ -183,6 +183,10 @@ const SlyderContainer = styled.div<{
       }
     }
 
+    .close:hover path {
+      stroke: #ff7e1b;
+    }
+
     .smallPhotos2 {
       display: none;
 

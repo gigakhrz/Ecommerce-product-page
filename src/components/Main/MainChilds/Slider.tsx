@@ -179,6 +179,7 @@ const SlyderContainer = styled.div<{
 
       @media screen and (min-width: 1024px) {
         display: flex;
+        cursor: pointer;
       }
     }
 
@@ -262,6 +263,7 @@ const SlyderContainer = styled.div<{
       @media screen and (min-width: 1024px) {
         max-width: 550px;
         height: 550px;
+        cursor: pointer;
       }
     }
 
@@ -275,14 +277,19 @@ const SlyderContainer = styled.div<{
       height: 40px;
       position: absolute;
       top: 43.3%;
+      @media screen and (min-width: 1024px) {
+        cursor: pointer;
+        width: 56px;
+        height: 56px;
+      }
     }
 
     .left {
-      left: 16px;
+      left: -25px;
     }
 
     .right {
-      right: 16px;
+      right: -25px;
     }
   }
 `;

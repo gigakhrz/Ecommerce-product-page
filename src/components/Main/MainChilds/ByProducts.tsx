@@ -39,12 +39,12 @@ const Buy = ({
 
       <AddToCart>
         <div className="count">
-          <button>
-            <img src={minusIcon} alt="minus icon" onClick={minus} />
+          <button onClick={minus}>
+            <img src={minusIcon} alt="minus icon" />
           </button>
           <h5>{count}</h5>
-          <button>
-            <img src={plusIcon} alt="plus icon" onClick={plus} />
+          <button onClick={plus}>
+            <img src={plusIcon} alt="plus icon" />
           </button>
         </div>
 
@@ -176,11 +176,14 @@ const AddToCart = styled.div`
     }
 
     button {
+      width: 25%;
+      height: 100%;
       border: none;
       background: none;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
   }
 
@@ -195,6 +198,11 @@ const AddToCart = styled.div`
     width: 100%;
     height: 56px;
     gap: 15.5px;
+
+    :hover {
+      background: #ffab6a;
+      cursor: pointer;
+    }
 
     h3 {
       font-family: Kumbh Sans;

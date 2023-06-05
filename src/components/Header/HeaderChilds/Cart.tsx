@@ -119,6 +119,7 @@ const ListOfProducts = styled.div`
       background-color: hsla(26, 100%, 55%, 1);
       cursor: pointer;
       text-align: center;
+      transition: background-color 0.3s ease-in-out;
 
       color: white;
       font-family: Kumbh Sans;

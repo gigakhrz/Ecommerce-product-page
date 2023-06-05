@@ -141,8 +141,12 @@ const HeaderContainer = styled.div<{ menu: boolean; addedProducts: number }>`
     position: absolute;
     background: #ff7e1b;
     border-radius: 6.5px;
-    top: 8px;
-    right: 65px;
+    top: -4px;
+    right: 40px;
+    @media screen and (min-width: 1024px) {
+      top: 8px;
+      right: 65px;
+    }
 
     align-items: center;
     justify-content: center;
